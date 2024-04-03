@@ -22,7 +22,7 @@ private class UpdateAccountsTest {
 
         // Create test orders related to the test account
         List<Order> testOrders = new List<Order>();
-        for (Integer i = 0; i < 5; i++) {
+        for (Integer i = 0; i < 200; i++) {
             testOrders.add(new Order(AccountId = testAccount.Id, EffectiveDate = Date.today(), Status = 'Draft', Pricebook2Id = Test.getStandardPricebookId()));
         }
         insert testOrders;
@@ -48,6 +48,6 @@ private class UpdateAccountsTest {
 
         // Verify that the account's revenue has been updated
         testAccount = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id = :testAccount.Id];
-        System.assertEquals(7500, testAccount.Chiffre_d_affaire__c);
+        System.assertEquals(300000, testAccount.Chiffre_d_affaire__c);
     }
 }
