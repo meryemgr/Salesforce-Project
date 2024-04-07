@@ -1,10 +1,12 @@
+// Controller class to handle the logic for the Visualforce page MyTeamOrdersPage
 public with sharing class MyTeamOrdersController {
+   // Property to store the sum of orders
     public Decimal sumOrders {
         get {
-            // Exécuter une requête SOQL pour obtenir la somme des montants totaux des commandes avec le statut "Activated"
+            // Execute a SOQL query to retrieve the sum of total amounts of orders with the status "Activated"
             AggregateResult groupedResults = [SELECT SUM(TotalAmount) total FROM Order WHERE Status = 'Activated'];
             
-            // Récupérer le total de la somme et le retourner
+            // Retrieve the total sum and return it
             if (groupedResults.get('total') != null) {
                 return (Decimal) groupedResults.get('total');
             } else {

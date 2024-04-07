@@ -2,15 +2,15 @@
 private class AccountServiceTest {
    
         @isTest static void testChiffreAffaire() {
-            // Création d'un compte
+            // Creating an account for testing
             Account acc1 = new Account(Name = 'Test Account 1');
             insert acc1;
     
-            // Création d'un produit
+            // Creating a product 
             Product2 pd1 = new Product2(Name = 'Chemise Verte longue XYX', Family = 'Chemise');
             insert pd1;
     
-            // Création de l'entrée de catalogue de prix
+            // Creating a pricebook entry
             PricebookEntry pbe = new PricebookEntry(
                 Pricebook2Id = Test.getStandardPricebookId(),
                 Product2Id = pd1.Id,
@@ -40,10 +40,10 @@ private class AccountServiceTest {
             update testOrders;
     
         
-        // Récupération du compte mis à jour
+           // Retrieving the updated account
         Account updatedAccount = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id = :acc1.Id];
 
-        // Vérification que le chiffre d'affaires est correct
+        // Verifying that the total revenue is correct
         System.assertEquals(300000, updatedAccount.Chiffre_d_affaire__c, 'Chiffre_d_affaire__c should be updated correctly');
     }
     
